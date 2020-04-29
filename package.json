@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "cd client && yarn",
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
     "start": "node server.js",
