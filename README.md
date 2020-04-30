@@ -8,8 +8,9 @@ Ingredients:
 * Node.js
 
 Uses Yarn.
+
 Deployable on Heroku.
 
 ## TODO:
 
-* Add docker-compose.yml with MongoDB
+* Add Mongoose and some CRUD + GUI for it.
