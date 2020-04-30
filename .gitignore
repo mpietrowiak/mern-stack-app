@@ -24,4 +24,4 @@ yarn-error.log*
 
 .env
 
-subscriptions.json
+/data

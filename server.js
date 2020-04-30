@@ -3,14 +3,13 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const fs = require('fs');
 const app = express();
 
 const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 
-app.get('/hello', (req, res) => {
-  res.status(200).json({ world: true });
+app.get('/api', (req, res) => {
+  res.status(200).json({ world: 'Welcome :) This text is from the API.' });
 });
 
 if (process.env.NODE_ENV === 'production') {
