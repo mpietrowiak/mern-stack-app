@@ -2,7 +2,7 @@
 
 Ingredients:
 
-* MongoDB (TODO)
+* MongoDB
 * Express
 * React
 * Node.js
