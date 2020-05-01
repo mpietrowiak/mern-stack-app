@@ -6,7 +6,7 @@ RUN mkdir -p ./client/public
 
 COPY ts*.json ./
 COPY package*.json ./
-COPY client/package*.json ./client
+COPY client/package*.json ./client/
 
 COPY src/ ./src/
 
