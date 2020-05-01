@@ -22,6 +22,7 @@ You can build a docker image using `yarn build-image`.
 
 ## TODO:
 
+* Investigate using Next.js for server-side rendering
 * Investigate using Create-React-App programatically.
 * Investigate how to use the same way of serving the app in development and production (?)
 * Add Mongoose and some CRUD + GUI for it.
