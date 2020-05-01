@@ -1,24 +1,17 @@
-import express from 'express';
+import App from './app';
 import bodyParser from 'body-parser';
-import path from 'path';
+import FrontendController from './controllers/frontend.controller';
+import ApiController from './controllers/api.controller';
 
-const app = express();
-
-const port = process.env.PORT || 5000;
-app.use(bodyParser.json());
-
-app.get('/api', (req, res) => {
-  res.status(200).json({ world: 'Welcome :) This text is from the API - new version.' });
+const app = new App({
+  port: Number(process.env.PORT || 5000),
+  controllers: [
+    new FrontendController(),
+    new ApiController()
+  ],
+  middlewares: [
+    bodyParser.json()
+  ]
 });
 
-if (process.env.NODE_ENV === 'production') {
-  // Serve any static files
-  app.use(express.static(path.join(__dirname, '../client/build')));
-    
-  // Handle React routing, return all requests to React app
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-  });
-}
-
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen()
