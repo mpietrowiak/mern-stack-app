@@ -1,6 +1,7 @@
 import express from 'express';
 import { Application } from 'express';
 import path from 'path';
+import mongoose from 'mongoose';
 
 class App {
   public app: Application;
@@ -10,10 +11,23 @@ class App {
     this.app = express();
     this.port = appInit.port;
 
+    this.connectMongo();
     this.assets();
     this.middlewares(appInit.middlewares);
     this.routes(appInit.controllers);
+  }
 
+  private connectMongo() {
+    const db = mongoose.connection;
+
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function() {
+      console.log('connected to DB!');
+    });
+
+    mongoose.connect("mongodb://mongo:27017/testDb", { // Todoo env variable
+      useNewUrlParser: true
+    });
   }
 
   private middlewares(middlewares: { forEach: (arg0: (middleware: any) => void) => void; }) {
