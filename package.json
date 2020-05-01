@@ -14,7 +14,8 @@
     "server-dev": "concurrently --kill-others-on-fail \"yarn watch-ts\" \"yarn server\"",
     "start": "yarn server",
     "run-dev": "concurrently --kill-others-on-fail \"yarn server-dev\" \"yarn client-dev\"",
-    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "build-client": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "heroku-postbuild": "yarn build-client"
   },
   "repository": {
     "type": "git",

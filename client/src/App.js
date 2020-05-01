@@ -23,7 +23,7 @@ const App = () => {
   return (
     <Container>
       <StyledPaper>
-        <h3 style={{color:'blue'}}>{text}</h3>
+        <h3 style={{color:'red'}}>{text}</h3>
       </StyledPaper>
     </Container>
   )

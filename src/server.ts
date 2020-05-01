@@ -6,8 +6,8 @@ import ApiController from './controllers/api.controller';
 const app = new App({
   port: Number(process.env.PORT || 5000),
   controllers: [
-    new FrontendController(),
-    new ApiController()
+    new ApiController(),
+    new FrontendController() // it must be last to catch all the remaining possible routes
   ],
   middlewares: [
     bodyParser.json()

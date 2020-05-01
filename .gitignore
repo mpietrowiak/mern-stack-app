@@ -8,8 +8,14 @@ node_modules
 # testing
 /coverage
 
-# production
-/build
+# mongoDB docker volume
+/data
+
+# client build
+/client/build
+
+# server build
+/dist
 
 # misc
 .DS_Store
@@ -23,6 +29,3 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
-
-/data
-/dist

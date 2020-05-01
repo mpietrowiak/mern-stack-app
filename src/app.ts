@@ -10,9 +10,10 @@ class App {
     this.app = express();
     this.port = appInit.port;
 
+    this.assets();
     this.middlewares(appInit.middlewares);
     this.routes(appInit.controllers);
-    this.assets();
+
   }
 
   private middlewares(middlewares: { forEach: (arg0: (middleware: any) => void) => void; }) {
@@ -28,7 +29,7 @@ class App {
   }
 
   private assets() {
-    this.app.use(express.static(path.join(__dirname, '../client/build')));
+    this.app.use(express.static(path.resolve(__dirname, '../client/build')));
   }
 
   public listen() {

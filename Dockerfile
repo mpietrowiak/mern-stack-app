@@ -8,7 +8,7 @@ COPY ts*.json ./
 COPY package*.json ./
 COPY client/package*.json ./client
 
-COPY src/*.ts ./src/
+COPY src/ ./src/
 
 COPY client/src/* ./client/src/
 COPY client/public/* ./client/public/
