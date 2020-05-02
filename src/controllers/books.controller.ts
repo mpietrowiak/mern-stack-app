@@ -13,29 +13,75 @@ class BooksController implements IControllerBase {
   }
 
   public initRoutes() {
-    this.router.route('/:id?')
-      .get(this.handleGet)
-      .post(this.handlePost);
+    this.router
+      .get('/', this.listItems)
+      .post('/', this.addItem)
+
+      .get('/:id', this.getItem)
+      .put('/:id', this.editItem)
+      .delete('/:id', this.deleteItem);
   }
 
-  handleGet = (req: Request, res: Response) => {  
-    console.log(req.params);
-    // if (req.params.id) { }
-    res.status(200).json({ world: 'books' });
+  listItems = async (req: Request, res: Response) => {
+    res.status(200).json({
+      msg: 'listItems'
+    });
   }
 
-  handlePost = async (req: Request, res: Response) => {
-    const { title, author } = req.body;
-    try {
-      const newBook = new Book({ title, author });
-      await newBook.save();
-      res.status(200).json(newBook);
-    } catch (error) {
-      res.status(400).json({
-        error
-      });
-    }
+  addItem = async (req: Request, res: Response) => {
+    res.status(200).json({
+      msg: 'addItem'
+    });
   }
+
+  getItem = async (req: Request, res: Response) => {
+    res.status(200).json({
+      msg: 'getItem'
+    });
+  }
+
+  editItem = async (req: Request, res: Response) => {
+    res.status(200).json({
+      msg: 'listItems'
+    });
+  }
+
+  deleteItem = async (req: Request, res: Response) => {
+    res.status(200).json({
+      msg: 'editItem'
+    });
+  }  
+
+  // handleGet = async (req: Request, res: Response) => {
+  //   console.log(req.params.id);
+  //   try {
+  //     if (req.params.id) {
+  //       const result = await Book.findById(req.params.id);
+  //       res.status(200).json(result);
+  //     } else {
+  //       const result = await Book.find({});
+  //       console.log(result);
+  //       res.status(200).json(result);
+  //     }
+  //   } catch (error) {
+  //     res.status(400).json({
+  //       error
+  //     });
+  //   }
+  // }
+
+  // handlePost = async (req: Request, res: Response) => {
+  //   const { title, author } = req.body;
+  //   try {
+  //     const newBook = new Book({ title, author });
+  //     await newBook.save();
+  //     res.status(200).json(newBook);
+  //   } catch (error) {
+  //     res.status(400).json({
+  //       error
+  //     });
+  //   }
+  // }
 }
 
 export default BooksController;
