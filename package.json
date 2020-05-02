@@ -4,18 +4,12 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "build-ts": "tsc",
-    "watch-ts": "tsc -w",
-    "dev": "docker-compose -f docker-compose.dev.yml up",
-    "build-image": "docker build -t matas/mern-stack-node .",
-    "run-image": "docker run -p 5000:5000 matas/mern-stack-node",
-    "postinstall": "cd client && yarn",
-    "client-dev": "cd client && yarn start",
-    "server": "nodemon dist/server.js",
-    "server-dev": "concurrently --kill-others-on-fail \"yarn watch-ts\" \"yarn server\"",
-    "start": "yarn server",
-    "run-dev": "concurrently --kill-others-on-fail \"yarn server-dev\" \"yarn client-dev\"",
-    "build-client": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "docker-dev": "docker-compose -f docker-compose.dev.yml up",
+    "docker-build-image": "docker build -t matas/mern-stack-node .",
+    "docker-run-image": "docker run -p 5000:5000 matas/mern-stack-node",
+    "server": "nodemon --watch dist dist/server.js",
+    "dev": "concurrently --kill-others-on-fail \"tsc -p tsconfig.dev.json \" \"yarn server\"",
+    "prod": "tsc -p tsconfig.prod.json; next build; NODE_ENV=production yarn server",
     "heroku-postbuild": "yarn build-client"
   },
   "repository": {
@@ -29,13 +23,21 @@
   },
   "homepage": "https://github.com/mpietrowiak/mern-stack#readme",
   "dependencies": {
+    "@material-ui/core": "^4.9.12",
     "@types/express": "^4.17.6",
     "@types/mongoose": "^5.7.14",
+    "@types/next": "^9.0.0",
+    "@types/react-dom": "^16.9.7",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.9.11"
+    "mongoose": "^5.9.11",
+    "next": "^9.3.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "ts-node": "^8.9.1"
   },
   "devDependencies": {
+    "@types/react": "^16.9.34",
     "concurrently": "^5.1.0",
     "nodemon": "^2.0.3",
     "tslint": "^6.1.2",

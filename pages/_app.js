@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import { styled } from '@material-ui/core/styles';
 
 const StyledPaper = styled(Paper)({
-  padding: '20px'
+  padding: '30px'
 });
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
   return (
     <Container>
       <StyledPaper>
-        <h3 style={{color:'red'}}>{text}</h3>
+        <h3 style={{color:'blue'}}>{text}</h3>
       </StyledPaper>
     </Container>
   )

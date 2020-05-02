@@ -3,11 +3,11 @@ version: "3"
 services:
   node:
     image: node:12.3-alpine
-    command: sh -c "cd /usr/app && npm run run-dev"
+    command: sh -c "cd /usr/app && npm run server-dev"
     volumes:
       - ./:/usr/app
     ports:
-      - "3000:3000"
+      - "5000:5000"
     depends_on:
       - mongo
   mongo:
