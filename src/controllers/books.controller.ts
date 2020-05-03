@@ -2,6 +2,7 @@ import * as express from 'express';
 import { Request, Response } from 'express';
 import IControllerBase from '../interfaces/IControllerBase.interface';
 import mongoose from 'mongoose';
+import passport from 'passport';
 
 import Book from '../models/book.model';
 
@@ -16,10 +17,11 @@ class BooksController implements IControllerBase {
   public initRoutes() {
     this.router
       .get('/', this.listItems)
-      .post('/', this.addItem)
       .get('/:id', this.getItem)
-      .put('/:id', this.editItem)
-      .delete('/:id', this.deleteItem);
+
+      .post('/', passport.authenticate('jwt', {session: false}), this.addItem)
+      .put('/:id', passport.authenticate('jwt', {session: false}), this.editItem)
+      .delete('/:id', passport.authenticate('jwt', {session: false}), this.deleteItem);
   }
 
   listItems = async (req: Request, res: Response) => {
