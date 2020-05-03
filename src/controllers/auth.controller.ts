@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import passport from 'passport';
 
 class AuthController implements IControllerBase {
-  public path = '/auth';
+  public path = '/api/auth';
   public router = express.Router();
 
   constructor() {

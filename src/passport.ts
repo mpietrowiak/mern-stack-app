@@ -1,9 +1,6 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
-
-import passportJWT from 'passport-jwt';
-const JWTStrategy = passportJWT.Strategy;
-const ExtractJWT = passportJWT.ExtractJwt;
+import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
 
 passport.use(new LocalStrategy({
   usernameField: 'email',
@@ -12,13 +9,12 @@ passport.use(new LocalStrategy({
   const user = {
     email: 'matas8@protonmail.com'
   }
-  // TODO get from DB.
   return cb(null, user, { message: 'Logged in successfully.'});
 }));
 
 passport.use(
   new JWTStrategy({
-    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey   : 'your_jwt_secret'
   },
   function (jwtPayload, cb) {

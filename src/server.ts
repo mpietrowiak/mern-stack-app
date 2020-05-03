@@ -1,9 +1,18 @@
-import App from './app';
+import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+
+import App from './app';
+import nextApp from './nextapp';
+import connectMongo from './mongo';
+import './passport';
+
 import FrontendController from './controllers/frontend.controller';
 import ApiController from './controllers/api.controller';
 import BooksController from './controllers/books.controller';
-import nextApp from './nextapp';
+import AuthController from './controllers/auth.controller';
+
+dotenv.config();
+connectMongo();
 
 (async () => {
   await nextApp.prepare();
@@ -11,9 +20,10 @@ import nextApp from './nextapp';
   const app = new App({
     port: Number(process.env.PORT || 5000),
     controllers: [
+      new AuthController(),
       new ApiController(),
       new BooksController(),
-      new FrontendController() // it must be last to catch all the remaining possible routes
+      new FrontendController()
     ],
     middlewares: [
       bodyParser.json()
