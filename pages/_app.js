@@ -1,32 +1,18 @@
+// pages/_app.js
+
 import './App.css';
-import React, { useEffect, useState } from 'react';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
-import { styled } from '@material-ui/core/styles';
 
-const StyledPaper = styled(Paper)({
-  padding: '30px'
-});
+import App from 'next/app';
+import React from 'react';
+import withReactRouter from '../next/with-react-router';
 
-const App = () => {
-  const [text, setText] = useState('Loading...');
+class MyApp extends App {
+  render() {
+    const {Component, pageProps} = this.props;
+    return (
+      <Component {...pageProps} />
+    );
+  }
+}
 
-  useEffect(() => {
-    async function getText() {
-      const response = await fetch('/api');
-      const json = await response.json();
-      setText(json.world);
-    }
-    getText();
-  }, []);
-
-  return (
-    <Container>
-      <StyledPaper>
-        <h3 style={{color:'blue'}}>{text}</h3>
-      </StyledPaper>
-    </Container>
-  )
-};
-
-export default App;
+export default withReactRouter(MyApp);
