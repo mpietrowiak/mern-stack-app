@@ -8,7 +8,7 @@
     "docker-build-image": "docker build -t matas/mern-stack-node .",
     "docker-run-image": "docker run -p 5000:5000 matas/mern-stack-node",
     "server": "nodemon --watch dist dist/server.js",
-    "dev": "concurrently --kill-others-on-fail \"tsc -p tsconfig.dev.json \" \"yarn server\"",
+    "dev": "concurrently --kill-others-on-fail \"tsc -w -p tsconfig.dev.json \" \"yarn server\"",
     "prod": "tsc -p tsconfig.prod.json; next build; NODE_ENV=production yarn server",
     "heroku-postbuild": "yarn build-client"
   },
