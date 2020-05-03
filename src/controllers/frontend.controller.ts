@@ -19,8 +19,7 @@ class FrontendController implements IControllerBase {
   index = (req: Request, res: Response, next: NextFunction ) => {
     const { query } = parse(req.url, true);
     try {
-      req.locals = {};
-      req.locals.context = {};
+      (req as any).locals = { context: {} };
       nextApp.render(req, res, '/', query);
     } catch (error) {
       next(error);
