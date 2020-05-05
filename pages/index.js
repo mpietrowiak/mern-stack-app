@@ -5,6 +5,9 @@ import { styled } from '@material-ui/core/styles';
 import {
   Route, Link
 } from 'react-router-dom';
+import HomeView from '../views/HomeView';
+import UserProfileView from '../views/UserProfileView';
+import Header from '../components/Header';
 
 const StyledPaper = styled(Paper)({
   padding: '30px'
@@ -25,18 +28,16 @@ const Index = () => {
   return (
     <Container>
       <StyledPaper>
-        <nav>
+        <Header></Header>
 
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-          
-        </nav>
-        <Route path="/" exact>
-          <h1>This is the home page.</h1>
-        </Route>
-        <Route path="/about" exact>
-          <h1>This is the about page.</h1>
-        </Route>
+        <main>
+          <Route path="/" exact>
+            <HomeView></HomeView>
+          </Route>
+          <Route path="/user" exact>
+            <UserProfileView></UserProfileView>
+          </Route>
+        </main>
       </StyledPaper>
     </Container>
   )
