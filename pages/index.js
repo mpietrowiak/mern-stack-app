@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import { styled } from '@material-ui/core/styles';
@@ -7,33 +7,16 @@ import HomeView from '../views/HomeView';
 import UserProfileView from '../views/UserProfileView';
 import CookiesDemoView from '../views/CookiesDemoView';
 import Header from '../components/Header';
-import { UserContext } from '../context/UserContext';
-import { parseCookies, setCookie, destroyCookie } from 'nookies';
+import { parseCookies } from 'nookies';
+import UserProvider from '../providers/UserProvider';
 
 const StyledPaper = styled(Paper)({
   padding: '30px'
 });
 
 const Index = ({ cookies: { username, userToken } }) => {
-  const [userData, setUserData] = useState({ username, userToken });
-
-  function setUserDataWithCookie(userData) {
-    setCookie(null, 'username', userData.username);
-    setCookie(null, 'userToken', userData.userToken);
-    setUserData(userData);
-  }
-
-  function unsetUserData() {
-    destroyCookie(null, 'username');
-    destroyCookie(null, 'userToken');
-    setUserData({
-      username: null,
-      userToken: null
-    });
-  }
-
   return (
-    <UserContext.Provider value={{ userData, setUserData: setUserDataWithCookie, unsetUserData }}>
+    <UserProvider username={username} userToken={userToken}>
       <Container>
         <StyledPaper>
           <Header></Header>
@@ -50,7 +33,7 @@ const Index = ({ cookies: { username, userToken } }) => {
           </main>
         </StyledPaper>
       </Container>
-    </UserContext.Provider>
+    </UserProvider>
   )
 };
 
