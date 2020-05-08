@@ -11,7 +11,7 @@ function UserProvider({ username, userToken, children }) {
     setUserData(userData);
   }
 
-  function unsetUserData() {
+  function logout() {
     destroyCookie(null, 'username');
     destroyCookie(null, 'userToken');
     setUserData({
@@ -21,7 +21,7 @@ function UserProvider({ username, userToken, children }) {
   }
 
   return (
-    <UserContext.Provider value={{ userData, setUserData: setUserDataWithCookie, unsetUserData }}>
+    <UserContext.Provider value={{ userData, setUserData: setUserDataWithCookie, logout }}>
       {children}
     </UserContext.Provider>
   )

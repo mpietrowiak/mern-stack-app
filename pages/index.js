@@ -5,7 +5,7 @@ import { styled } from '@material-ui/core/styles';
 import { Route } from 'react-router-dom';
 import HomeView from '../views/HomeView';
 import UserProfileView from '../views/UserProfileView';
-import CookiesDemoView from '../views/CookiesDemoView';
+import LoginView from '../views/LoginView';
 import Header from '../components/Header';
 import { parseCookies } from 'nookies';
 import UserProvider from '../providers/UserProvider';
@@ -27,8 +27,8 @@ const Index = ({ cookies: { username, userToken } }) => {
             <Route path="/user" exact>
               <UserProfileView></UserProfileView>
             </Route>
-            <Route path="/cookies" exact>
-              <CookiesDemoView></CookiesDemoView>
+            <Route path="/login" exact>
+              <LoginView></LoginView>
             </Route>          
           </main>
         </StyledPaper>

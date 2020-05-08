@@ -4,14 +4,29 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 export default function Header() {
-  const { userData } = useContext(UserContext);
+  const { userData, logout } = useContext(UserContext);
 
   return (
-    <nav style={{marginBottom:'30px'}}>
-      <Link to="/">Home</Link> &nbsp;| &nbsp;
-      <Link to="/user">User profile</Link> &nbsp;| &nbsp;
-      <Link to="/cookies">Cookies demo</Link><br /><br />
-      {userData.username ? (`Logged in as: ${userData.username}`) : ('Not logged in.')}  
-    </nav>
+    <header style={{marginBottom:'30px', display: 'flex', justifyContent: 'space-between'}}>
+      <nav>
+        <Link to="/">Home</Link> &nbsp;| &nbsp;
+        <Link to="/user">User profile</Link> &nbsp;| &nbsp;
+        <Link to="/login">Login</Link><br /><br />
+      </nav>
+
+      <div className="user">
+        {userData.username ? (
+          <div>
+            Logged in as: {userData.username}&nbsp;
+            <a href="#" onClick={logout}>Logout</a>
+          </div>
+        ) : (
+          <div>
+            Not logged in. &nbsp;
+            <Link to="/login">Login</Link>
+          </div>
+        )}
+      </div>
+    </header>
   )
 }
