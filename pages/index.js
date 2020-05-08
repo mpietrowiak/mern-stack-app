@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import HomeView from '../views/HomeView';
 import UserProfileView from '../views/UserProfileView';
+import CookiesDemoView from '../views/CookiesDemoView';
 import Header from '../components/Header';
 
 const StyledPaper = styled(Paper)({
@@ -37,6 +38,9 @@ const Index = () => {
           <Route path="/user" exact>
             <UserProfileView></UserProfileView>
           </Route>
+          <Route path="/cookies" exact>
+            <CookiesDemoView></CookiesDemoView>
+          </Route>          
         </main>
       </StyledPaper>
     </Container>
