@@ -8,12 +8,14 @@ import UserProfileView from '../views/UserProfileView';
 import CookiesDemoView from '../views/CookiesDemoView';
 import Header from '../components/Header';
 import { UserContext } from '../context/UserContext';
+import { parseCookies} from 'nookies';
 
 const StyledPaper = styled(Paper)({
   padding: '30px'
 });
 
-const Index = (props) => {
+const Index = ({ cookies }) => {
+  const { username, userToken } = cookies;
   // const [text, setText] = useState('Loading...');
 
   // useEffect(() => {
@@ -26,12 +28,10 @@ const Index = (props) => {
   // }, []);
 
   return (
-    <UserContext.Provider value="hello from context">
+    <UserContext.Provider value={{ username, userToken }}>
       <Container>
         <StyledPaper>
           <Header></Header>
-          {props.foo}
-
           <main>
             <Route path="/" exact>
               <HomeView></HomeView>
@@ -50,11 +50,10 @@ const Index = (props) => {
 };
 
 export async function getServerSideProps(context) {
-  console.log(context.req.headers.cookie);
-
+  const cookies = parseCookies(context);
   return {
     props: {
-      foo: 'Hi!'
+      cookies
     }
   }
 }

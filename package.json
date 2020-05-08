@@ -7,7 +7,6 @@
     "docker-dev": "docker-compose -f docker-compose.dev.yml up",
     "docker-build-image": "docker build -t matas/mern-stack-node .",
     "docker-run-image": "docker run -p 5000:5000 matas/mern-stack-node",
-
     "dev": "tsc -p tsconfig.dev.json; nodemon",
     "start": "tsc -p tsconfig.prod.json; next build; NODE_ENV=production node dist/server"
   },
@@ -40,6 +39,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.11",
     "next": "^9.3.6",
+    "nookies": "^2.3.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
