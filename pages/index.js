@@ -13,7 +13,7 @@ const StyledPaper = styled(Paper)({
   padding: '30px'
 });
 
-const Index = () => {
+const Index = (props) => {
   // const [text, setText] = useState('Loading...');
 
   // useEffect(() => {
@@ -30,6 +30,7 @@ const Index = () => {
       <Container>
         <StyledPaper>
           <Header></Header>
+          {props.foo}
 
           <main>
             <Route path="/" exact>
@@ -47,5 +48,15 @@ const Index = () => {
     </UserContext.Provider>
   )
 };
+
+export async function getServerSideProps(context) {
+  console.log(context.req.headers.cookie);
+
+  return {
+    props: {
+      foo: 'Hi!'
+    }
+  }
+}
 
 export default Index;
