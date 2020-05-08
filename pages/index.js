@@ -8,27 +8,32 @@ import UserProfileView from '../views/UserProfileView';
 import CookiesDemoView from '../views/CookiesDemoView';
 import Header from '../components/Header';
 import { UserContext } from '../context/UserContext';
-import { parseCookies} from 'nookies';
+import { parseCookies, setCookie, destroyCookie } from 'nookies';
 
 const StyledPaper = styled(Paper)({
   padding: '30px'
 });
 
-const Index = ({ cookies }) => {
-  const { username, userToken } = cookies;
-  // const [text, setText] = useState('Loading...');
+const Index = ({ cookies: { username, userToken } }) => {
+  const [userData, setUserData] = useState({ username, userToken });
 
-  // useEffect(() => {
-  //   async function getText() {
-  //     const response = await fetch('/api');
-  //     const json = await response.json();
-  //     setText(json.world);
-  //   }
-  //   getText();
-  // }, []);
+  function setUserDataWithCookie(userData) {
+    setCookie(null, 'username', userData.username);
+    setCookie(null, 'userToken', userData.userToken);
+    setUserData(userData);
+  }
+
+  function unsetUserData() {
+    destroyCookie(null, 'username');
+    destroyCookie(null, 'userToken');
+    setUserData({
+      username: null,
+      userToken: null
+    });
+  }
 
   return (
-    <UserContext.Provider value={{ username, userToken }}>
+    <UserContext.Provider value={{ userData, setUserData: setUserDataWithCookie, unsetUserData }}>
       <Container>
         <StyledPaper>
           <Header></Header>

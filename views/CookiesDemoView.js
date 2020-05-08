@@ -1,15 +1,20 @@
-import React from 'react';
-import { setCookie, destroyCookie } from 'nookies';
+import React, { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 export default function CookiesDemoView() {
+  const { setUserData, unsetUserData } = useContext(UserContext);
+
   function login() {
-    setCookie(null, 'username', 'matas8@protonmail.com');
-    setCookie(null, 'userToken', 'sometokensialala');
+    console.log('login button clicked');
+    setUserData({
+      username: 'matas8@protonmail.com',
+      userToken: '1337aaa1337bbb'
+    });
   }
 
   function logout() {
-    destroyCookie(null, 'username');
-    destroyCookie(null, 'userToken');
+    console.log('logout button clicked');
+    unsetUserData();
   }
   return (
     <div>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 export default function Header() {
-  const userData = useContext(UserContext);
+  const { userData } = useContext(UserContext);
 
   return (
     <nav style={{marginBottom:'30px'}}>
