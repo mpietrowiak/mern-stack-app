@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 
-export default function CookiesDemoView() {
+export default function LoginView() {
   const { setUserData, unsetUserData } = useContext(UserContext);
 
   function submitForm(event) {
@@ -21,16 +21,14 @@ export default function CookiesDemoView() {
     <div>
       <form onSubmit={submitForm}>
         <fieldset>
-        <div>
+          <div>
             <label htmlFor="login">Login:</label>
             <input type="text" id="login" />
           </div>
-
           <div>
             <label htmlFor="password">Password:</label>
             <input type="password" id="password" />
           </div>
-
           <button>Login</button>
         </fieldset>
       </form>
