@@ -1,11 +1,11 @@
 import React from 'react';
-
 import { Route } from 'react-router-dom';
-import HomeView from '../views/HomeView';
-import UserProfileView from '../views/UserProfileView';
-import LoginView from '../views/LoginView';
 import { parseCookies } from 'nookies';
-import UserProvider from '../providers/UserProvider';
+
+import HomeView from '@/views/HomeView';
+import UserProfileView from '@/views/UserProfileView';
+import LoginView from '@/views/LoginView';
+import UserProvider from '@/providers/UserProvider';
 
 const Index = ({ cookies: { username, userToken } }) => {
   return (

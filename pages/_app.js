@@ -1,5 +1,3 @@
-// pages/_app.js
-
 import './App.css';
 
 import App from 'next/app';

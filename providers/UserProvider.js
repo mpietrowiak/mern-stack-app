@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { setCookie, destroyCookie } from 'nookies';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '@/context/UserContext';
 
 function UserProvider({ username, userToken, children }) {
   const [userData, setUserData] = useState({ username, userToken });

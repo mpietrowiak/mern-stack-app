@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '@/context/UserContext';
 
 export default function LoginView() {
   const { setUserData, unsetUserData } = useContext(UserContext);
@@ -13,7 +13,7 @@ export default function LoginView() {
     event.preventDefault();
 
     fetch('/api/auth', {
-//TODO
+      //TODO
     });
   }
 
