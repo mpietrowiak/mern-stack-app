@@ -13,15 +13,15 @@ class AuthController implements IControllerBase {
   }
 
   public initRoutes() {
-    this.router.get('/login', this.login);
+    this.router.post('/login', this.login);
   }
 
   login = (req: Request, res: Response, next: NextFunction ) => {
     passport.authenticate('local', { session: false }, (err, user, info) => {
       if (err || !user) {
         return res.status(400).json({
-          message: 'Something is not right',
-          user   : user
+          error: err,
+          user: user
         });
       }
 
