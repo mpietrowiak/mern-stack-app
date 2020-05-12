@@ -1,28 +1,31 @@
 import { Document, Schema, Model, model, Error } from "mongoose";
 import bcrypt from "bcrypt-nodejs";
+import hashPassword from "../../utils/hashPassword";
 
 export interface IUser extends Document {
-  username: string;
+  email: string;
   password: string;
 }
 
 export const userSchema: Schema = new Schema({
-  username: String,
-  password: String,
+  email: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
 });
 
-
-userSchema.pre<IUser>("save", function save(next) {
+userSchema.pre<IUser>("save", async function save(next) {
   const user = this;
-
-  bcrypt.genSalt(10, (err, salt) => {
-    if (err) { return next(err); }
-    bcrypt.hash(this.password, salt, null, (err: Error, hash: any) => {
-      if (err) { return next(err); }
-      user.password = hash;
-      next();
-    });
-  });
+  try {
+    user.password = await hashPassword(<string>user.password);
+    next();
+  } catch (err) {
+    next(err);
+  }
 });
 
 userSchema.methods.comparePassword = function (candidatePassword: string, callback: any) {
