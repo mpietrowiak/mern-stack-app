@@ -17,7 +17,7 @@ export default function Header() {
       <div className="user">
         {userData.username ? (
           <div>
-            Logged in as: {userData.username}&nbsp;
+            Logged in as: <b>{userData.username}</b>&nbsp;
             <a href="#" onClick={logout}>Logout</a>
           </div>
         ) : (
