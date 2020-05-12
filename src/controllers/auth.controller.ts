@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import IControllerBase from '../interfaces/IControllerBase.interface';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
+import { User } from '../models/user.model';
 
 class AuthController implements IControllerBase {
   public path = '/api/auth';
@@ -14,6 +15,7 @@ class AuthController implements IControllerBase {
 
   public initRoutes() {
     this.router.post('/login', this.login);
+    this.router.post('/addUser', this.addUser);
   }
 
   login = (req: Request, res: Response, next: NextFunction ) => {
@@ -34,6 +36,15 @@ class AuthController implements IControllerBase {
         return res.json({ user, token });
       })
     })(req, res);
+  }
+
+  addUser = async (req: Request, res: Response, next: NextFunction ) => {
+    try {
+      await User.create(req.body);
+      res.status(201).end();
+    } catch (error) {
+      res.status(422).json({ error: error.toString() });
+    }
   }
 }
 
