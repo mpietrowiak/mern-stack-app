@@ -1,6 +1,6 @@
 import { Document, Schema, Model, model, Error } from "mongoose";
 import bcrypt from "bcrypt-nodejs";
-import hashPassword from "../../utils/hashPassword";
+import hashPassword from "../utils/hashPassword";
 
 export interface IUser extends Document {
   email: string;
